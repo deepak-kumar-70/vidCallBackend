@@ -5,17 +5,16 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-   cors: {
-  origin: 'https://vid-call-eight.vercel.app/',
-  methods: ['GET', 'POST'],
-},
-
+    origin: 'https://vid-call-eight.vercel.app',
+    methods: ['GET', 'POST'],
+    credentials: true
   },
-    transports: ['websocket', 'polling'],
-    allowEIO3: true,    
-    pingTimeout: 60000,
-    pingInterval: 25000,
+  transports: ['websocket', 'polling'],
+  allowEIO3: true,
+  pingTimeout: 60000,
+  pingInterval: 25000,
 });
+
 
 let users={};
 io.on('connection', (socket) => {
